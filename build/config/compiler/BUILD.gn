@@ -1073,6 +1073,13 @@ config("compiler_cpu_abi") {
     } else if (current_cpu == "s390x") {
       cflags += [ "-m64" ]
       ldflags += [ "-m64" ]
+    } else if (current_cpu == "riscv" || current_cpu == "riscv64") {
+      if (riscv_arch != "") {
+        cflags += [ "-march=" + riscv_arch ]
+      }
+      if (riscv_abi != "") {
+        cflags += [ "-mabi=" + riscv_abi ]
+      }
     }
   }
 
